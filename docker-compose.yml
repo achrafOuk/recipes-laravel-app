@@ -1,0 +1,52 @@
+version: '3'
+networks:
+  laravel:
+    driver: bridge
+services:
+  db:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: recipe-app-mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=laravel
+    networks:
+      - laravel
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - 9001:80
+    depends_on:
+      - db
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - laravel
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_ENV=local
+    container_name: recipe-app-laravel
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=laravel
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    depends_on:
+      - db
+    networks:
+      - laravel

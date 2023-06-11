@@ -1,0 +1,1 @@
+<x-search-component  action="{{route('seach-favorite-meals')}}" :searchTerm="empty($searchTerm) ? '': $searchTerm" :areas="$areas" :categories="$categories" /> 
