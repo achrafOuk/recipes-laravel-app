@@ -1,7 +1,7 @@
 # Recipe Application:
 This is a recipe application built using Laravel 9 and MySQL and Alpine.js. The application has a Docker Compose image that can be used to run the application.
 # Features:
-- The application has the following features:
+The application has the following features:
 - Everyone can show recipes
 - Search recipes by advanced features
 - Login/Register account
