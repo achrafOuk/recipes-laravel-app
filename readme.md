@@ -8,6 +8,7 @@ The application has the following features:
 - The application has 2 users: normal user and admin
 - The normal user has the possibility to add recipe to favorite
 - The admin can add, edit, delete recipes
+- Get random recipe
 # Installation:
 To install the application, follow these steps:
 Clone the repository
